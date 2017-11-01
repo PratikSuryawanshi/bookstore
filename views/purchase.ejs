@@ -1,0 +1,58 @@
+<% include partials/header %>
+
+<div>
+        <h3>Thank you <%= currentUser %></h3>
+        <p>Your Order</p>
+        <table border="2" style="padding: 1in" cellpadding="2">
+                <tr>
+                        <td><b>Book</b></td>
+                        <td><b>Quantity</b></td>
+                        <td><b>Unit Cost</b></td>
+                        <td><b>Total Cost</b></td>
+                    </tr>
+            <tbody>
+            <% cartBooks.forEach(function(cartbook){%>  
+                    <tr>
+                        <td align="left"><%= cartbook.name %></td>
+                        <td align="right"><%= cartbook.quantity %></td>
+                        <td align="right"><%= cartbook.price %></td>
+                        <td align="right"><%= cartbook.selectedCost %></td>
+                    </tr>
+            <% }) %>      
+            </tbody>
+        </table>
+</div>
+
+<div>
+        <p>Total cost is $<%= totalCost %></p>
+        <p><br>Please enter your Credit Card information:
+        </p>
+        <form method="post" action="/confirm">
+        <table border="0">
+        
+            <tbody>
+                <tr>
+                    <td>Credit Card</td>
+                    <td width="92"><select name="Creditcard">
+                        <option value="Mastercard">MasterCard</option>
+                        <option value="Visa">Visa</option>
+                        <option value="Amex">Amex</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td>Card Number</td>
+                    <td width="92"> <input type="text" name="Cardnumber" pattern="[0-9]{4} *[0-9]{4} *[0-9]{4} *[0-9]{4}" placeholder="Credit Card Number" size="16" required></td>			                  
+                </tr>
+                <tr>
+                    <td>Express Delivery</td>
+                    <td width="92"><input type="checkbox" name="expressdelivery"></td>
+                </tr>
+            </tbody>
+        </table>
+        <input type="hidden" name="totalCost" value = <%= totalCost %>>
+        <input type="submit" name="Purchase" value="Purchase">
+        <br/><a href="/logout">LOGOUT</a>
+        </form>
+</div>
+
+<% include partials/footer %>

@@ -1,0 +1,37 @@
+<% include partials/header %>
+
+    <div>
+        <H2>All the books in the bookstore!</H2>
+    </div>
+    <div>
+        <table cellpadding="10">
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>MoreInfo</th>
+            </tr>
+            <% books.forEach(function(book){%>
+                <tr>
+                    <td>
+                        <%= book.name %>
+                    </td>
+                    <td>
+                        <%= book.price %>
+                    </td>
+                    <td>
+                        <a href="<%= book.url %>">Get Info</a>
+                    </td>
+                </tr>
+                <% }) %>
+        </table>
+    </div>
+    <div>
+        I want to
+        <a href="/login">purchase something! </a>
+    </div>
+    <div>
+        I want to
+        <a href="/login">manage bookstore </a>
+    </div>
+
+    <% include partials/footer %>

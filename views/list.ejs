@@ -1,0 +1,45 @@
+<% include partials/header %>
+
+<div>
+    <% if(errors){%>
+        <p>
+            <h4>Incorrect input</h4>
+        </p>
+        <ul>
+            <% errors.forEach(function(error){%>
+                <li><%= error.msg %></li>
+            <%})%>
+        </ul>
+    <% } %>
+</div>
+<form action="/purchase" method="post">
+    <table border="0">
+        <tbody>
+            <tr>
+                <td>Name:</td><td><%= currentUser %></td>
+            </tr>
+            <tr>
+                <td>Quantity</td>
+                <td><input type="text" name="Quantity" size="4" maxlength="12"></td>
+            </tr>
+            <tr>
+                <td>Books</td>
+                <td>
+                <select size="9" name="selectedBoxBooks" multiple="multiple">
+                        <% books.forEach(function(book){%>
+                        <!-- <option value="<%= book.name.split(" ").splice(-1)[0] %>"><%= book.name %></option> -->
+                        <option value="<%= book.id %>"><%= book.name %></option>
+                        <% }) %>
+                </select>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br/>
+        <input type="submit" name="SUBMIT"/>
+        <br/><a href="/logout">LOGOUT</a>
+    </form> 
+    
+
+
+<% include partials/footer %>
